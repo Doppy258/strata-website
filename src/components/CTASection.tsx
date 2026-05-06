@@ -1,18 +1,21 @@
 export function CTASection() {
   return (
-    <section id="contact" className="bg-[#1A1A2E] text-white py-32 px-6 border-b border-white/10">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight mb-8">
-          What if we stopped building stronger and started building smarter?
+    <section id="contact" className="relative overflow-hidden bg-[#060605] px-6 py-32 text-white">
+      <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E8A838]/10 blur-3xl" />
+      <div className="liquid-glass-strong relative mx-auto max-w-5xl rounded-[2rem] px-6 py-14 text-center md:px-14 md:py-20">
+        <p className="mb-6 font-body text-sm text-white/65">{"// Pilot inquiries"}</p>
+        <h2 className="mx-auto max-w-4xl font-heading text-5xl italic leading-[0.9] tracking-[-2px] text-white md:text-7xl">
+          Stop designing buildings to endure force. Remove the force.
         </h2>
-        <p className="text-lg md:text-xl text-white/60 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
-          Strata is developing the world's first commercial seismic metamaterial foundation. We're looking for partners, advisors, and believers.
+        <p className="mx-auto mt-8 max-w-2xl font-body text-base font-light leading-snug text-white/68 md:text-lg">
+          Strata is preparing pilot partnerships with owners, engineers, and public agencies building
+          in seismic zones.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-          <button className="w-full sm:w-auto px-8 py-4 rounded-full font-medium text-lg border border-white/20 hover:bg-white/5 transition-colors duration-300">
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+          <button className="liquid-glass w-full rounded-full px-8 py-4 font-body text-base font-medium text-white transition-transform active:scale-[0.98] sm:w-auto">
             Read the Research
           </button>
-          <button className="w-full sm:w-auto px-8 py-4 rounded-full font-medium text-lg bg-accent text-white hover:bg-accent/90 hover:scale-[0.98] transition-all duration-300">
+          <button className="w-full rounded-full bg-[#E8A838] px-8 py-4 font-body text-base font-semibold text-[#060605] transition-transform active:scale-[0.98] sm:w-auto">
             Get in Touch
           </button>
         </div>

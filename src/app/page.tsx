@@ -1,4 +1,5 @@
 import { HeroSequence } from "@/components/HeroSequence";
+import { XRayReveal } from "@/components/XRayReveal";
 import { StatsStrip } from "@/components/StatsStrip";
 import { InfoSections } from "@/components/InfoSections";
 import { TimelineSection } from "@/components/TimelineSection";
@@ -12,8 +13,9 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow">
         <HeroSequence />
-        <StatsStrip />
         <InfoSections />
+        <XRayReveal />
+        <StatsStrip />
         <TimelineSection />
         <CTASection />
       </main>

@@ -5,130 +5,104 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function StatsStrip() {
   const containerRef = useRef<HTMLElement>(null);
-  
-  // Refs for numbers we will animate
   const val1Ref = useRef<HTMLSpanElement>(null);
   const val2StartRef = useRef<HTMLSpanElement>(null);
   const val2EndRef = useRef<HTMLSpanElement>(null);
   const val3StartRef = useRef<HTMLSpanElement>(null);
   const val3EndRef = useRef<HTMLSpanElement>(null);
 
-  useGSAP(() => {
-    const mm = gsap.matchMedia();
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      // Create a timeline that triggers when stats enter viewport
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          once: true,
-        },
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 78%",
+            once: true,
+          },
+        });
+
+        tl.from(".evidence-card", {
+          y: 28,
+          opacity: 0,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: "power3.out",
+        })
+          .to(val1Ref.current, { innerHTML: -9.3, duration: 2, ease: "power2.out", snap: { innerHTML: 0.1 } }, "-=0.6")
+          .to(val2StartRef.current, { innerHTML: 7, duration: 1.5, ease: "power2.out", snap: { innerHTML: 1 } }, "-=2")
+          .to(val2EndRef.current, { innerHTML: 5.5, duration: 1.5, ease: "power2.out", snap: { innerHTML: 0.1 } }, "-=2")
+          .to(val3StartRef.current, { innerHTML: 2.6, duration: 2, ease: "power2.out", snap: { innerHTML: 0.1 } }, "-=2")
+          .to(val3EndRef.current, { innerHTML: 7.8, duration: 2, ease: "power2.out", snap: { innerHTML: 0.1 } }, "-=2");
       });
 
-      // Simple fade up for the container
-      tl.from(containerRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        if (val1Ref.current) val1Ref.current.innerHTML = "-9.3";
+        if (val2StartRef.current) val2StartRef.current.innerHTML = "7";
+        if (val2EndRef.current) val2EndRef.current.innerHTML = "5.5";
+        if (val3StartRef.current) val3StartRef.current.innerHTML = "2.6";
+        if (val3EndRef.current) val3EndRef.current.innerHTML = "7.8";
       });
 
-      // Animate numbers
-      tl.to(val1Ref.current, {
-        innerHTML: -9.3,
-        duration: 2,
-        ease: "power2.out",
-        snap: { innerHTML: 0.1 },
-      }, "-=0.4");
-      
-      tl.to(val2StartRef.current, {
-        innerHTML: 7,
-        duration: 1.5,
-        ease: "power2.out",
-        snap: { innerHTML: 1 },
-      }, "-=2");
-      
-      tl.to(val2EndRef.current, {
-        innerHTML: 5.5,
-        duration: 1.5,
-        ease: "power2.out",
-        snap: { innerHTML: 0.1 },
-      }, "-=2");
-
-      tl.to(val3StartRef.current, {
-        innerHTML: 2.6,
-        duration: 2,
-        ease: "power2.out",
-        snap: { innerHTML: 0.1 },
-      }, "-=2");
-
-      tl.to(val3EndRef.current, {
-        innerHTML: 7.8,
-        duration: 2,
-        ease: "power2.out",
-        snap: { innerHTML: 0.1 },
-      }, "-=2");
-    });
-    
-    mm.add("(prefers-reduced-motion: reduce)", () => {
-      // Make sure final values are set directly
-      if (val1Ref.current) val1Ref.current.innerHTML = "-9.3";
-      if (val2StartRef.current) val2StartRef.current.innerHTML = "7";
-      if (val2EndRef.current) val2EndRef.current.innerHTML = "5.5";
-      if (val3StartRef.current) val3StartRef.current.innerHTML = "2.6";
-      if (val3EndRef.current) val3EndRef.current.innerHTML = "7.8";
-    });
-
-    return () => mm.revert();
-  }, { scope: containerRef });
+      return () => mm.revert();
+    },
+    { scope: containerRef }
+  );
 
   return (
-    <section ref={containerRef} className="bg-background py-24 px-6 border-b border-border-gray relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-foreground/50 mb-16 text-center">
-          Validated Science
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
-          {/* Stat 1 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="font-mono text-5xl md:text-6xl font-medium text-accent mb-4 tracking-tighter">
-              <span ref={val1Ref}>0.0</span> <span className="text-3xl">dB</span>
-            </div>
-            <h3 className="text-lg font-semibold text-foreground mb-2">Seismic wave attenuation</h3>
-            <p className="text-sm text-foreground/60">First full-scale field test, 2025</p>
+    <section id="science" ref={containerRef} className="relative bg-[#060605] px-6 py-28 text-white">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="mb-5 font-body text-sm text-white/65">{"// Validated science"}</p>
+            <h2 className="max-w-2xl font-heading text-5xl italic leading-[0.9] tracking-[-2px] text-white md:text-7xl">
+              Not stronger buildings. Calmer ground.
+            </h2>
           </div>
-
-          {/* Stat 2 */}
-          <div className="flex flex-col items-center text-center relative">
-            <div className="hidden md:block absolute -left-6 top-1/2 -translate-y-1/2 w-px h-24 bg-border-gray" />
-            <div className="font-mono text-5xl md:text-6xl font-medium text-accent mb-4 tracking-tighter">
-              M<span ref={val2StartRef}>0</span> → M<span ref={val2EndRef}>0.0</span>
-            </div>
-            <h3 className="text-lg font-semibold text-foreground mb-2">Magnitude reduction</h3>
-            <p className="text-sm text-foreground/60">MIT Lincoln Lab simulations</p>
-            <div className="hidden md:block absolute -right-6 top-1/2 -translate-y-1/2 w-px h-24 bg-border-gray" />
-          </div>
-
-          {/* Stat 3 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="font-mono text-5xl md:text-6xl font-medium text-accent mb-4 tracking-tighter">
-              <span ref={val3StartRef}>0.0</span>–<span ref={val3EndRef}>0.0</span> <span className="text-3xl">Hz</span>
-            </div>
-            <h3 className="text-lg font-semibold text-foreground mb-2">Band gap coverage</h3>
-            <p className="text-sm text-foreground/60">Matches destructive earthquake frequencies</p>
-          </div>
+          <p className="max-w-md font-body text-sm font-light leading-snug text-white/70 md:text-right">
+            The physics comes from periodic structures and local resonance, translated into civil
+            materials that can be placed below grade.
+          </p>
         </div>
 
-        <div className="text-center max-w-3xl mx-auto">
-          <p className="italic text-foreground/70 text-lg">
-            "The physics of periodic structures has been proven for 50+ years in semiconductor design. We're applying it to the ground beneath your feet."
-          </p>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <article className="evidence-card liquid-glass rounded-[1.5rem] p-6">
+            <div className="font-heading text-5xl italic leading-none tracking-[-1px] text-[#E8A838] md:text-6xl">
+              <span ref={val1Ref}>0.0</span> dB
+            </div>
+            <h3 className="mt-8 font-body text-base font-semibold text-white">Seismic wave attenuation</h3>
+            <p className="mt-2 font-body text-sm font-light leading-snug text-white/62">
+              Reported in a full-scale field test of buried metamaterial elements.
+            </p>
+          </article>
+
+          <article className="evidence-card liquid-glass rounded-[1.5rem] p-6">
+            <div className="font-heading text-5xl italic leading-none tracking-[-1px] text-[#E8A838] md:text-6xl">
+              M<span ref={val2StartRef}>0</span> to M<span ref={val2EndRef}>0.0</span>
+            </div>
+            <h3 className="mt-8 font-body text-base font-semibold text-white">Motion reduction target</h3>
+            <p className="mt-2 font-body text-sm font-light leading-snug text-white/62">
+              A design objective for reducing what a protected structure actually feels.
+            </p>
+          </article>
+
+          <article className="evidence-card liquid-glass rounded-[1.5rem] p-6">
+            <div className="font-heading text-5xl italic leading-none tracking-[-1px] text-[#E8A838] md:text-6xl">
+              <span ref={val3StartRef}>0.0</span>-<span ref={val3EndRef}>0.0</span> Hz
+            </div>
+            <h3 className="mt-8 font-body text-base font-semibold text-white">Band gap coverage</h3>
+            <p className="mt-2 font-body text-sm font-light leading-snug text-white/62">
+              Tuned to the range where destructive earthquake energy concentrates.
+            </p>
+          </article>
         </div>
       </div>
     </section>

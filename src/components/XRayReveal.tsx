@@ -36,8 +36,8 @@ function BuildingSilhouette() {
   const towerBays = [-38, -10, 18];
   const towerFloors = [-344, -310, -276, -242, -208, -174];
   const wingFloors = [-120, -88];
-  const leftWingBays = [-122, -94];
-  const rightWingBays = [78, 106];
+  const leftWingBays = [-112, -88];
+  const rightWingBays = [84, 108];
   const podiumBays = [-132, -98, -64, -30, 4, 38, 72, 106];
 
   return (
@@ -295,17 +295,17 @@ export function XRayReveal() {
         </g>
       </svg>
 
-      <div ref={labelsRef} className="pointer-events-none absolute inset-x-0 bottom-24 z-20 grid gap-3 px-4 sm:grid-cols-2 sm:px-6 md:bottom-auto md:top-[36%] md:grid-cols-[minmax(0,18rem)_minmax(0,18rem)] md:justify-between md:px-12 lg:top-[38%] lg:px-20 xl:px-24">
+      <div ref={labelsRef} className="pointer-events-none absolute inset-x-0 bottom-[13rem] z-20 grid grid-cols-2 gap-2 px-3 sm:px-6 md:bottom-auto md:top-[31%] md:grid-cols-4 md:gap-3 md:px-8 lg:px-12 xl:px-16">
         {[
-          ["01", "Resonator Columns", "Rubber-steel cores tune the soil to earthquake frequencies.", "md:row-start-1 md:self-start"],
-          ["02", "Periodic Array", "Two-meter spacing forms band gaps waves cannot cross.", "md:col-start-2 md:row-start-1 md:self-start"],
-          ["03", "Concentric Rings", "Multiple rings widen protection around the foundation.", "md:row-start-2 md:mt-8 lg:mt-10"],
-          ["04", "Protected Zone", "The structure sits in stillness while energy routes around it.", "md:col-start-2 md:row-start-2 md:mt-8 lg:mt-10"],
-        ].map(([number, title, body, placement]) => (
-          <div key={number} className={`liquid-glass rounded-[1.35rem] p-4 sm:min-h-36 md:max-w-72 md:p-5 ${placement}`}>
+          ["01", "Resonator Columns", "Rubber-steel cores tune the soil to earthquake frequencies."],
+          ["02", "Periodic Array", "Two-meter spacing forms band gaps waves cannot cross."],
+          ["03", "Concentric Rings", "Multiple rings widen protection around the foundation."],
+          ["04", "Protected Zone", "The structure sits in stillness while energy routes around it."],
+        ].map(([number, title, body]) => (
+          <div key={number} className="liquid-glass rounded-[1.15rem] p-3.5 md:rounded-[1.35rem] md:p-4 lg:p-5">
             <p className="font-body text-[10px] font-semibold tracking-[0.24em] text-[#E8A838]">{number}</p>
-            <h3 className="mt-3 max-w-[12ch] font-heading text-2xl italic leading-[0.95] tracking-[-0.5px] text-white md:text-[1.7rem]">{title}</h3>
-            <p className="mt-3 font-body text-sm font-light leading-snug text-white/70 md:text-[0.8rem]">{body}</p>
+            <h3 className="mt-2.5 font-heading text-xl italic leading-[0.95] tracking-[-0.5px] text-white md:mt-3 md:text-2xl lg:text-[1.7rem]">{title}</h3>
+            <p className="mt-2 font-body text-[11px] font-light leading-snug text-white/70 md:mt-3 md:text-xs lg:text-[0.8rem]">{body}</p>
           </div>
         ))}
       </div>

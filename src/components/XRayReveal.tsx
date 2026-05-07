@@ -57,9 +57,9 @@ function BuildingSilhouette() {
       <path d="M-166 0V-70H-144V-108H-120V-142H-76V-374H-56V-418H58V-374H78V-142H120V-108H144V-70H166V0Z" fill="url(#buildingFacade)" />
       <path d="M-166 0V-70H-144V-108H-120V-142H-76V-374H-56V-418H58V-374H78V-142H120V-108H144V-70H166V0Z" fill="none" stroke="#10101c" strokeWidth="4" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
 
-      <path d="M78-374L120-342V-142H78Z" fill="#11111f" opacity="0.16" />
-      <path d="M120-142L144-108V-70H120Z" fill="#11111f" opacity="0.18" />
-      <path d="M-76-374L-118-342V-142H-76Z" fill="#ffffff" opacity="0.14" />
+      <path d="M58-374H78V-142H58Z" fill="#11111f" opacity="0.09" />
+      <path d="M120-108H144V-70H120Z" fill="#11111f" opacity="0.12" />
+      <path d="M-76-374H-56V-142H-76Z" fill="#ffffff" opacity="0.12" />
       <path d="M-56-418H58L70-392H-68Z" fill="#f6f1e6" />
       <path d="M-56-418H58L70-392H-68Z" fill="none" stroke="#10101c" strokeWidth="3" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
       <path d="M-76-374H78" stroke="#10101c" strokeWidth="3" strokeLinecap="square" vectorEffect="non-scaling-stroke" />
@@ -295,17 +295,17 @@ export function XRayReveal() {
         </g>
       </svg>
 
-      <div ref={labelsRef} className="pointer-events-none absolute inset-x-0 bottom-[13rem] z-20 grid grid-cols-2 gap-2 px-3 sm:px-6 md:bottom-auto md:top-[31%] md:grid-cols-4 md:gap-3 md:px-8 lg:px-12 xl:px-16">
+      <div ref={labelsRef} className="pointer-events-none absolute inset-x-0 bottom-[13rem] z-20 grid grid-cols-2 gap-2 px-3 sm:px-6 md:bottom-auto md:top-[29%] md:grid-cols-4 md:gap-4 md:px-10 lg:px-14 xl:px-16">
         {[
           ["01", "Resonator Columns", "Rubber-steel cores tune the soil to earthquake frequencies."],
           ["02", "Periodic Array", "Two-meter spacing forms band gaps waves cannot cross."],
           ["03", "Concentric Rings", "Multiple rings widen protection around the foundation."],
           ["04", "Protected Zone", "The structure sits in stillness while energy routes around it."],
         ].map(([number, title, body]) => (
-          <div key={number} className="liquid-glass rounded-[1.15rem] p-3.5 md:rounded-[1.35rem] md:p-4 lg:p-5">
+          <div key={number} className="liquid-glass-strong rounded-[1.15rem] p-3.5 md:rounded-[1.35rem] md:p-4 lg:p-5">
             <p className="font-body text-[10px] font-semibold tracking-[0.24em] text-[#E8A838]">{number}</p>
-            <h3 className="mt-2.5 font-heading text-xl italic leading-[0.95] tracking-[-0.5px] text-white md:mt-3 md:text-2xl lg:text-[1.7rem]">{title}</h3>
-            <p className="mt-2 font-body text-[11px] font-light leading-snug text-white/70 md:mt-3 md:text-xs lg:text-[0.8rem]">{body}</p>
+            <h3 className="mt-2.5 font-heading text-xl italic leading-[0.95] tracking-[-0.5px] text-white md:mt-3 md:text-[1.45rem] lg:text-2xl xl:text-[1.6rem]">{title}</h3>
+            <p className="mt-2 font-body text-[11px] font-light leading-snug text-white/78 md:mt-3 md:text-xs lg:text-[0.8rem]">{body}</p>
           </div>
         ))}
       </div>
